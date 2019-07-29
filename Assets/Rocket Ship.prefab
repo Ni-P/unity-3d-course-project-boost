@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3792520375581437705}
   - component: {fileID: 3792520375581437706}
   - component: {fileID: 3792520375581437707}
-  - component: {fileID: 3792520375581437704}
   m_Layer: 0
   m_Name: Port Booster
   m_TagString: Untagged
@@ -78,19 +77,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &3792520375581437704
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3792520375581437702}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3792520376034082763
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,8 +166,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.6758299, y: 1.3636084, z: 1}
+  m_Center: {x: -0.0034032762, y: 0.062223118, z: 0}
 --- !u!1 &3792520376849114901
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,7 +179,6 @@ GameObject:
   - component: {fileID: 3792520376849114900}
   - component: {fileID: 3792520376849114905}
   - component: {fileID: 3792520376849114902}
-  - component: {fileID: 3792520376849114903}
   m_Layer: 0
   m_Name: Starboard Booster
   m_TagString: Untagged
@@ -260,19 +245,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &3792520376849114903
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3792520376849114901}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3792520377008557785
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,7 +259,7 @@ GameObject:
   - component: {fileID: 62578693}
   m_Layer: 0
   m_Name: Rocket Ship
-  m_TagString: Untagged
+  m_TagString: Friendly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -318,7 +290,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3792520377008557785}
   serializedVersion: 2
-  m_Mass: 0.8
+  m_Mass: 1
   m_Drag: 0.2
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -434,6 +406,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21d0a66678c14bb489289600892ce826, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rcsThrust: 100
+  mainThrust: 998
 --- !u!1 &7548201590755285768
 GameObject:
   m_ObjectHideFlags: 0
@@ -445,7 +419,6 @@ GameObject:
   - component: {fileID: 2543702060299806828}
   - component: {fileID: 1945332578423039072}
   - component: {fileID: 1241918057423302055}
-  - component: {fileID: 5758696297909864252}
   m_Layer: 0
   m_Name: Nose Cone
   m_TagString: Untagged
@@ -512,16 +485,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &5758696297909864252
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7548201590755285768}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}

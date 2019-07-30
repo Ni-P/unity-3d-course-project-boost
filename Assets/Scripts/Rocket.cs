@@ -1,17 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿//using System.Collections;
+//using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class Rocket : MonoBehaviour
 {
 
     Rigidbody rigidBody;
     AudioSource audioSource;
 
+    enum State { Alive, Dying, Transcending }
+    State state = State.Alive;
+
     [SerializeField]
     float rcsThrust = 100f;
     [SerializeField]
-    float mainThrust = 998;
+    float mainThrust = 998f;
 
     // Start is called before the first frame update
     void Start()
@@ -23,26 +26,44 @@ public class Rocket : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Thrust();
-        Rotate();
+        if (state == State.Alive)
+        {
+            Thrust();
+            Rotate();
+        }
         Audio();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        switch(collision.gameObject.tag)
+        if (state != State.Alive) return;
+        switch (collision.gameObject.tag)
         {
             case "Friendly":
                 break;
-            case "Fuel":
-                print("fueled!");
+            case "Finish":
+                print("Finish");
+                state = State.Transcending;
+                Invoke("LoadNextScene", 1f);
                 break;
             default:
                 print("Died!");
+                state = State.Dying;
+                Invoke("LoadFirstScene", 1f);
                 break;
         }
     }
 
+    private void LoadNextScene()
+    {
+
+        SceneManager.LoadScene(1);
+    }
+
+    private void LoadFirstScene()
+    {
+        SceneManager.LoadScene(0);
+    }
 
     private void Rotate()
     {
@@ -52,12 +73,12 @@ public class Rocket : MonoBehaviour
 
         if (Input.GetKey(KeyCode.A))
         {
-            
+
             transform.Rotate(Vector3.forward * rotationPerFrame);
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            
+
             transform.Rotate(Vector3.back * rotationPerFrame);
         }
 
@@ -75,7 +96,7 @@ public class Rocket : MonoBehaviour
 
     private void Audio()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space) && state == State.Alive)
         {
             if (!audioSource.isPlaying)
             {

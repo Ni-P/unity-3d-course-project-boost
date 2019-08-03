@@ -24,6 +24,8 @@ public class Rocket : MonoBehaviour
     [SerializeField] ParticleSystem successParticles;
     [SerializeField] ParticleSystem deathParticles;
 
+    static private int sceneIndex = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,9 +41,10 @@ public class Rocket : MonoBehaviour
             RespondToThrustInput();
             RespondToRotateInput();
             PlayThrusterAudio();
-        } else
+        }
+        else
         {
-            
+
         }
     }
 
@@ -71,23 +74,30 @@ public class Rocket : MonoBehaviour
 
     private void PlayLevelLoadAudio()
     {
+        audioSource.volume = 0.8f;
         audioSource.PlayOneShot(levelSound);
-        
+
     }
 
     private void PlayDeathAudio()
     {
+        audioSource.volume = 0.8f;
         audioSource.PlayOneShot(deathSound);
     }
 
     private void LoadNextScene()
     {
-
-        SceneManager.LoadScene(1);
+        var scenes = SceneManager.sceneCountInBuildSettings;
+        if (sceneIndex + 1 == scenes)
+            SceneManager.LoadScene(scenes - 1);
+        else
+            SceneManager.LoadScene(++sceneIndex);
     }
 
     private void LoadFirstScene()
     {
+
+        sceneIndex = 0;
         SceneManager.LoadScene(0);
     }
 
@@ -117,7 +127,7 @@ public class Rocket : MonoBehaviour
         {
             ApplyThrust();
             mainEngineParticles.Play();
-            
+
             //audioSource.PlayOneShot(mainEngine);
         }
         else
@@ -145,7 +155,7 @@ public class Rocket : MonoBehaviour
         }
         else
         {
-            if (audioSource.isPlaying)
+            if (audioSource.isPlaying && state == State.Alive)
             {
                 audioSource.volume -= 0.05f;
                 if (audioSource.volume == 0.0f)
